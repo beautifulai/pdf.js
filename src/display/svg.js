@@ -665,7 +665,12 @@ if (typeof PDFJSDev === "undefined" || PDFJSDev.test("GENERIC")) {
             this.paintSolidColorImageMask();
             break;
           case OPS.paintImageXObject:
-            this.paintImageXObject(args[0]);
+            // TODO: figure out why this may be happening
+            try {
+              this.paintImageXObject(args[0]);
+            } catch (err) {
+              console.warn(err);
+            }
             break;
           case OPS.paintInlineImageXObject:
             this.paintInlineImageXObject(args[0]);
